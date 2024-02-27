@@ -5,12 +5,21 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node src/server.js",
+    "watch": "nodemon src/server.js"
   },
   "author": "cedric ahenkorah",
   "license": "ISC",
   "dependencies": {
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "mongoose": "^8.2.0"
+    "mongoose": "^8.2.0",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }

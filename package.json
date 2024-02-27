@@ -1,0 +1,16 @@
+{
+  "name": "csvtojson",
+  "version": "1.0.0",
+  "description": "convert csv files to json format",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "cedric ahenkorah",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.2.0"
+  }
+}

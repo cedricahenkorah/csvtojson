@@ -2,7 +2,7 @@
 
 ## Overview
 
-A javascript application that that reads csv files and converts them to json format
+A javascript application that reads csv files and converts them to json format
 
 ## Features
 

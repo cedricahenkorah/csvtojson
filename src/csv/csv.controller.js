@@ -21,7 +21,7 @@ async function csvtojson(req, res) {
 }
 
 async function readJson(req, res) {
-  const json = await CSV.find({}, { __v: 0 }).lean();
+  const json = await CSV.find({}, { __v: 0, _id: 0 }).lean();
 
   return res.status(200).render("read-json", {
     path: "/read",

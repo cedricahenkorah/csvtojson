@@ -20,8 +20,8 @@
     </style>
   </head>
   <body>
-    <% if (json) { %>
     <button id="copyButton" data-clipboard-target="#copyjson">Copy</button>
+    <% if (json) { %>
     <pre id="copyjson">
         <code >
           <%= JSON.stringify(json, null, 2) %>

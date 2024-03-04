@@ -5,28 +5,38 @@ const csv = require("csv-parser");
 async function csvtojson(req, res) {
   const deleted = await CSV.deleteMany();
 
+  const savedPromises = [];
+
   if (deleted) {
     fs.createReadStream(req.file.path)
       .pipe(csv())
       .on("data", async (row) => {
         const document = new CSV(row);
 
-        await document.save();
+        savedPromises.push(document.save());
       })
-      .on("end", () => {
-        console.log("CSV file successfully processed");
-        res.status(200).redirect("/upload/read");
+      .on("end", async () => {
+        await Promise.all(savedPromises);
+
+        await res.redirect("/upload/read");
       });
   }
 }
 
 async function readJson(req, res) {
-  const json = await CSV.find({}, { __v: 0, _id: 0 }).lean();
+  try {
+    const json = await CSV.find({}, { __v: 0, _id: 0 }).lean();
 
-  return res.status(200).render("read-json", {
-    path: "/read",
-    json: json,
-  });
+    if (json) {
+      return res.status(200).render("read-json", {
+        path: "/read",
+        json: json,
+      });
+    }
+  } catch (error) {
+    console.error("Error fetching JSON data:", error);
+    return res.status(500).send("Internal Server Error");
+  }
 }
 
 module.exports = { csvtojson, readJson };

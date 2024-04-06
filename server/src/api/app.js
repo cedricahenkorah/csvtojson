@@ -15,7 +15,7 @@ app.set("view engine", "ejs"); // register view engine
 app.set("views", path.join(__dirname, "views"));
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.send("csvtojson server is live");
 });
 
 app.use("/upload", csvRouter);

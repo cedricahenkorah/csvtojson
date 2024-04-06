@@ -3,7 +3,7 @@ const { csvtojson } = require("./csv.controller");
 const multer = require("multer");
 const router = express.Router();
 
-const upload = multer({ storage: multer.memoryStorage() });
+const upload = multer({ dest: "uploads/" });
 
 router.post("/", upload.single("file"), csvtojson);
 

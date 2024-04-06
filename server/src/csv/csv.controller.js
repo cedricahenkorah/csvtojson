@@ -3,24 +3,22 @@ const fs = require("fs");
 const csv = require("csv-parser");
 
 async function csvtojson(req, res) {
-  const deleted = await CSV.deleteMany();
+  const jsonData = [];
 
-  const savedPromises = [];
+  const parser = fs
+    .createReadStream(req.file.path)
+    .pipe(csv())
+    .on("data", async (row) => {
+      jsonData.push(row);
+    })
+    .on("end", async () => {
+      res.json(jsonData);
+    });
 
-  if (deleted) {
-    fs.createReadStream(req.file.path)
-      .pipe(csv())
-      .on("data", async (row) => {
-        const document = new CSV(row);
-
-        savedPromises.push(document.save());
-      })
-      .on("end", async () => {
-        await Promise.all(savedPromises);
-
-        await res.redirect("/upload/read");
-      });
-  }
+  parser.on("error", (error) => {
+    console.error("Error parsing CSV:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  });
 }
 
 async function readJson(req, res) {

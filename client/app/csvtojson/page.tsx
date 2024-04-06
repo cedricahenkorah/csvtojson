@@ -57,7 +57,7 @@ export default function Csvtojson() {
       <section className="min-h-screen">
         <Navbar />
 
-        <div className="relative isolate pt-5 lg:pt-14 pb-5 lg:pb-10 px-5 lg:px-0">
+        <div className="relative isolate pt-5 lg:pt-14 pb-5 lg:pb-10 px-5 lg:px-5 xl:px-0">
           <div className="mx-auto lg:max-w-7xl max-w-3xl">
             <h1 className="font-bold text-lg lg:text-2xl">CSV - JSON</h1>
             <p className="font-semibold text-gray-500 text-sm lg:text-base">

@@ -2,8 +2,8 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const cors = require("cors");
-const csvRouter = require("../csv/csv.router");
-const corsOptions = require("../config/corsOptions");
+const csvRouter = require("./csv/csv.router");
+const corsOptions = require("./config/corsOptions");
 
 const app = express();
 

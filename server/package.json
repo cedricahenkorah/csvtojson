@@ -2,11 +2,11 @@
   "name": "csvtojson",
   "version": "1.0.0",
   "description": "convert csv files to json format",
-  "main": "src/api/server.js",
+  "main": "api/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/api/server.js",
-    "watch": "nodemon src/api/server.js"
+    "start": "node api/server.js",
+    "watch": "nodemon api/server.js"
   },
   "author": "cedric ahenkorah",
   "license": "ISC",

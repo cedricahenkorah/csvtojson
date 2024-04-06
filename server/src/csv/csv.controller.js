@@ -21,20 +21,4 @@ async function csvtojson(req, res) {
   });
 }
 
-async function readJson(req, res) {
-  try {
-    const json = await CSV.find({}, { __v: 0, _id: 0 }).lean();
-
-    if (json) {
-      return res.status(200).render("read-json", {
-        path: "/read",
-        json: json,
-      });
-    }
-  } catch (error) {
-    console.error("Error fetching JSON data:", error);
-    return res.status(500).send("Internal Server Error");
-  }
-}
-
-module.exports = { csvtojson, readJson };
+module.exports = { csvtojson };

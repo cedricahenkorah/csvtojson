@@ -13,6 +13,14 @@ async function csvtojson(req, res) {
     })
     .on("end", async () => {
       res.json(jsonData);
+
+      fs.unlink(req.file.path, (err) => {
+        if (err) {
+          console.error("Error deleting file:", err);
+        } else {
+          console.log("File deleted successfully");
+        }
+      });
     });
 
   parser.on("error", (error) => {

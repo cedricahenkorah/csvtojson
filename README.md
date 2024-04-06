@@ -4,7 +4,7 @@
 
 A javascript application that reads csv files and converts them to json format
 
-![screenshot of the json](/server/csvtojsonimg.jpeg)
+![screenshot of the json](/server/frontendimg.jpeg)
 
 ## Features
 

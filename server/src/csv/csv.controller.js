@@ -5,20 +5,21 @@ const csv = require("csv-parser");
 async function csvtojson(req, res) {
   const jsonData = [];
 
-  const parser = fs
-    .createReadStream(req.file.path)
-    .pipe(csv())
-    .on("data", async (row) => {
-      jsonData.push(row);
-    })
-    .on("end", async () => {
-      res.json(jsonData);
+  const csvData = req.file.buffer.toString();
+
+  // Parse the CSV data
+  csvData
+    .split("\n") // Split data into lines
+    .forEach((row) => {
+      const rowData = row.split(","); // Split line into fields
+      const jsonRow = {};
+      for (let i = 0; i < rowData.length; i++) {
+        jsonRow[`field_${i}`] = rowData[i]; // Store each field as 'field_i' in JSON object
+      }
+      jsonData.push(jsonRow);
     });
 
-  parser.on("error", (error) => {
-    console.error("Error parsing CSV:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  });
+  res.json(jsonData);
 }
 
 module.exports = { csvtojson };

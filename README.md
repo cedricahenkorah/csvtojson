@@ -27,7 +27,39 @@ git clone https://github.com/cedricahenkorah/csvtojson
 cd csvtojson
 ```
 
-3. **Set up environment variables**
+3. **Navigate to the frontend directory**
+
+```shell
+cd client
+```
+
+4. **Install packages**
+
+```shell
+npm install
+```
+
+5. **Set up your environment variables**
+
+   Use the .env.Example provided and set up your .env.local file in the root of the project
+
+   ```shell
+   NEXT_PUBLIC_SERVER_URL="your server uri"
+   ```
+
+6. **Run the frontend**
+
+```
+npm run dev
+```
+
+7. **Now navigate to your server directory from the root directory**
+
+```shell
+cd server
+```
+
+8. **Set up environment variables**
 
    Use the .env.Example provided and set up your .env file in the root of the project
 
@@ -36,14 +68,16 @@ PORT="set port number for the server"
 MONGO_URI="set mongo DB uri"
 ```
 
-4. **Install the project dependencies**
+9. **Install the project dependencies**
 
 ```shell
 npm install
 ```
 
-4. **Run the server**
+10. **Run the server**
 
 ```shell
 npm run watch
 ```
+
+11. **Have fun converting csv to json :)**

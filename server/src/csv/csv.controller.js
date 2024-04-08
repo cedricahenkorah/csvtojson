@@ -1,6 +1,8 @@
 const CSV = require("./csv.model");
 const fs = require("fs");
 const csv = require("csv-parser");
+const axios = require("axios");
+const cron = require("node-cron");
 
 async function csvtojson(req, res) {
   const jsonData = [];
@@ -28,5 +30,23 @@ async function csvtojson(req, res) {
     res.status(500).json({ error: "Internal Server Error" });
   });
 }
+
+async function wakeServer() {
+  const url = process.env.SERVER_URL;
+
+  try {
+    const response = await fetch(`${url}`);
+
+    if (response.ok) {
+      console.log("Server is awake");
+    } else {
+      throw new Error("Server is down");
+    }
+  } catch (error) {
+    console.error("Error waking server:", error);
+  }
+}
+
+cron.schedule("*/5 * * * *", wakeServer);
 
 module.exports = { csvtojson };

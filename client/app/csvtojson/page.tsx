@@ -7,6 +7,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowUpFromLine } from "lucide-react";
 import { uploadCSV } from "@/lib/csv";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Csvtojson() {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -41,7 +42,11 @@ export default function Csvtojson() {
 
     if (csv) {
       try {
-        const response = await uploadCSV(csv);
+        const response = await toast.promise(uploadCSV(csv), {
+          loading: "Parsing CSV to JSON",
+          success: <b>CSV parsed to JSON successfully</b>,
+          error: <b>An error occurred. Sorry!</b>,
+        });
 
         if (response) {
           setJson(JSON.stringify(response, null, 2));
@@ -56,6 +61,7 @@ export default function Csvtojson() {
     <div className="min-h-screen">
       <section className="min-h-screen">
         <Navbar />
+        <Toaster />
 
         <div className="relative isolate pt-5 lg:pt-14 pb-5 lg:pb-10 px-5 lg:px-5 xl:px-0">
           <div className="mx-auto lg:max-w-7xl max-w-3xl">

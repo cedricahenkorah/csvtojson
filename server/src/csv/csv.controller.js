@@ -47,6 +47,6 @@ async function wakeServer() {
   }
 }
 
-cron.schedule("*/5 * * * *", wakeServer);
+cron.schedule("*/10 * * * *", wakeServer);
 
 module.exports = { csvtojson };

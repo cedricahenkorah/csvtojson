@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Navbar } from "./_components/navbar";
 import Link from "next/link";
 

@@ -10,6 +10,6 @@ export async function uploadCSV(file: File) {
     const response = await axios.post(`${uri}/upload/`, formData);
     return response.data;
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 }

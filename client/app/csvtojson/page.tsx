@@ -94,7 +94,7 @@ export default function Csvtojson() {
             <div className="mt-5 lg:mt-10 relative">
               {showTooltip && (
                 <div className="absolute bg-black text-white text-xs rounded shadow p-2 top-0 right-0 -mt-8">
-                  copied!
+                  Copied!
                 </div>
               )}
 
@@ -122,7 +122,7 @@ export default function Csvtojson() {
                   {json ? (
                     <code className="text-xs lg:text-sm">{json}</code>
                   ) : (
-                    <code className="text-sm">upload a csv file :(</code>
+                    <code className="text-sm">Upload a csv file :(</code>
                   )}
                 </pre>
               </div>

@@ -45,7 +45,7 @@ export default function Csvtojson() {
         const response = await toast.promise(uploadCSV(csv), {
           loading: "Parsing CSV to JSON",
           success: <b>CSV parsed to JSON successfully</b>,
-          error: <b>An error occurred. Sorry!</b>,
+          error: <b>An error occurred. Try again!</b>,
         });
 
         if (response) {

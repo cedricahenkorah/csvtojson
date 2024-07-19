@@ -67,7 +67,7 @@ export default function Csvtojson() {
           <div className="mx-auto lg:max-w-7xl max-w-3xl">
             <h1 className="font-bold text-lg lg:text-2xl">CSV - JSON</h1>
             <p className="font-semibold text-gray-500 text-sm lg:text-base">
-              Upload an Excel file saved in CSV format and parse it to JSON
+              Upload a CSV file and parse it to JSON
             </p>
 
             <div className="mt-5 lg:mt-10 flex flex-col gap-y-2 lg:gap-y-3">

@@ -5,7 +5,7 @@ import { Navbar } from "../_components/navbar";
 import { Input } from "@/components/ui/input";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowUpFromLine } from "lucide-react";
+import { ArrowUpFromLine, Download } from "lucide-react";
 import { uploadCSV } from "@/lib/csv";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -57,6 +57,18 @@ export default function Csvtojson() {
     }
   };
 
+  const downloadJson = () => {
+    const blob = new Blob([json as string], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = csv?.name.replace(".csv", ".json") as string;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="min-h-screen">
       <section className="min-h-screen">
@@ -99,24 +111,36 @@ export default function Csvtojson() {
               )}
 
               <div className="relative bg-black text-white text-sm rounded shadow p-6">
-                <button
-                  data-clipboard-target="#copyjson"
-                  className="btn absolute top-0 right-0 mt-2 mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-copy"
-                    viewBox="0 0 16 16"
+                <div className="flex justify-between absolute top-0 right-10">
+                  <button
+                    data-clipboard-target="#copyjson"
+                    className="btn mt-2 mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"
-                    />
-                  </svg>
-                </button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      className="bi bi-copy"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"
+                      />
+                    </svg>
+                  </button>
+
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={downloadJson}
+                    className="text-purple-600 dark:text-purple-400 border-purple-200 dark:border-purple-800 hover:bg-purple-50 dark:hover:bg-purple-950/50 mt-2"
+                  >
+                    <Download className="w-4 h-4 mr-2" />
+                    Download
+                  </Button>
+                </div>
 
                 <pre id="copyjson">
                   {json ? (

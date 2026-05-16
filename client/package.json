@@ -15,7 +15,7 @@
     "clipboard": "^2.0.11",
     "clsx": "^2.1.0",
     "lucide-react": "^0.365.0",
-    "next": "14.1.4",
+    "next": "14.2.35",
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
